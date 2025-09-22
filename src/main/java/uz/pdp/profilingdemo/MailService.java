@@ -5,6 +5,7 @@ import freemarker.template.TemplateException;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -22,6 +23,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 @Component
+@Slf4j
 public class MailService {
     private final JavaMailSender javaMailSender;
     private final FreeMarkerConfig freeMarkerConfig;
@@ -40,6 +42,9 @@ public class MailService {
             mimeMessage.setSubject("Welcome...");
             mimeMessage.setText("Hello, " + fullName + "!");
             javaMailSender.send(mimeMessage);
+            for (int i = 0; i < 10000; i++) {
+                log.info("Mail sent to {}", fullName);
+            }
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
