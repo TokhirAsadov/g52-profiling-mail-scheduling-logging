@@ -1,0 +1,26 @@
+server:
+  port: 9090
+
+spring:
+  mail:
+    host: "sandbox.smtp.mailtrap.io"
+    port: 25
+    username: "105d1413c704cc"
+    password: "faa303e510f70a"
+    properties:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+        ssl:
+          trust: sandbox.smtp.mailtrap.io
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  freemarker:
+    template-loader-path: 'classpath:/templates/'
+
+
+
